@@ -1,14 +1,14 @@
 using Gtk 4.0;
-using Adw 1;
+using Adap 1;
 
-template $EditHistDialog: Adw.Dialog {
+template $EditHistDialog: Adap.Dialog {
 	name: "edit-hist-dialog";
 	content-width: 394;
 	title: _("Edit Entry");
 
-	Adw.ToolbarView {
+	Adap.ToolbarView {
 		[top]
-		Adw.HeaderBar headerBar {
+		Adap.HeaderBar headerBar {
 			show-start-title-buttons: false;
 			show-end-title-buttons: false;
 			decoration-layout: "";
@@ -39,7 +39,7 @@ template $EditHistDialog: Adw.Dialog {
 				"scrollbar-visible",
 			]
 
-			Adw.Clamp editHistDialogClamp {
+			Adap.Clamp editHistDialogClamp {
 				maximum-size: 380;
 
 				Box {
@@ -56,7 +56,7 @@ template $EditHistDialog: Adw.Dialog {
 
 						selection-mode: none;
 
-						Adw.SpinRow nameDoseSpinRow {
+						Adap.SpinRow nameDoseSpinRow {
 							title: "name";
 							subtitle: "dose unit";
 							digits: 2;
@@ -69,7 +69,7 @@ template $EditHistDialog: Adw.Dialog {
 							};
 						}
 
-						Adw.ActionRow takenRow {
+						Adap.ActionRow takenRow {
 							styles [
 								"property",
 							]
@@ -102,20 +102,24 @@ template $EditHistDialog: Adw.Dialog {
 									};
 								}
 
-								Adw.ToggleGroup takenButtons {
-									valign: center;
-									notify::active => $_handleTakenRowStatus();
+								Box {
+									styles [
+										"linked",
+									]
 
-									Adw.Toggle {
+									valign: center;
+
+									ToggleButton skippedToggle {
 										icon-name: "med-skipped-symbolic";
-										tooltip: _("Skipped");
-										name: 'skipped';
+										tooltip-text: _("Skipped");
+										active: true;
 									}
 
-									Adw.Toggle {
-										tooltip: _("Confirmed");
+									ToggleButton confirmedToggle {
+										tooltip-text: _("Confirmed");
 										icon-name: "med-confirmed-symbolic";
-										name: 'confirmed';
+										group: skippedToggle;
+										toggled => $_handleTakenRowStatus();
 									}
 								}
 							}

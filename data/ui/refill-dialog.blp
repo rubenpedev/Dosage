@@ -1,17 +1,17 @@
 using Gtk 4.0;
-using Adw 1;
+using Adap 1;
 
-template $RefillDialog: Adw.Dialog {
+template $RefillDialog: Adap.Dialog {
 	name: 'refill-dialog';
 	content-width: 420;
 	title: _("Refill");
 
-	Adw.ToolbarView {
+	Adap.ToolbarView {
 		[top]
-		Adw.HeaderBar headerBar {}
+		Adap.HeaderBar headerBar {}
 
 		content: ScrolledWindow {
-			Adw.Clamp refillDialogClamp {
+			Adap.Clamp refillDialogClamp {
 				maximum-size: 402;
 
 				Box {
@@ -28,7 +28,7 @@ template $RefillDialog: Adw.Dialog {
 
 						selection-mode: none;
 
-						Adw.SpinRow refillRow {
+						Adap.SpinRow refillRow {
 							styles [
 								"property",
 							]

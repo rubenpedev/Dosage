@@ -1,19 +1,19 @@
 using Gtk 4.0;
-using Adw 1;
+using Adap 1;
 
-template $PrefsDialog: Adw.Dialog {
+template $PrefsDialog: Adap.Dialog {
 	name: "preferences";
 	content-width: 472;
 	title: _("Preferences");
 
-	Adw.ToolbarView {
+	Adap.ToolbarView {
 		[top]
-		Adw.HeaderBar headerBar {}
+		Adap.HeaderBar headerBar {}
 
-		content: Adw.Clamp {
-			Adw.PreferencesPage prefsPage {
-				Adw.PreferencesGroup {
-					Adw.SwitchRow autoStart {
+		content: Adap.Clamp {
+			Adap.PreferencesPage prefsPage {
+				Adap.PreferencesGroup {
+					Adap.SwitchRow autoStart {
 						title: _("Auto-Start at Login");
 						active: bind $_setSwitchStartStateFromKey("autostart", autoStart) as <bool>;
 						notify::active => $_handleAutostart();
@@ -24,7 +24,7 @@ template $PrefsDialog: Adw.Dialog {
 						}
 					}
 
-					Adw.SwitchRow autoClear {
+					Adap.SwitchRow autoClear {
 						title: _("Auto-Clear History");
 						subtitle: _("Keeps a maximum of 30 days");
 						active: bind $_setSwitchStartStateFromKey("clear-old-hist", autoClear) as <bool>;
@@ -36,7 +36,7 @@ template $PrefsDialog: Adw.Dialog {
 						}
 					}
 
-					Adw.SwitchRow lowNotif {
+					Adap.SwitchRow lowNotif {
 						title: _("Low Stock Notification");
 						subtitle: _("Send reminders when treatments are low in stock");
 						active: bind $_setSwitchStartStateFromKey("low-stock-notif", lowNotif) as <bool>;
@@ -48,7 +48,7 @@ template $PrefsDialog: Adw.Dialog {
 						}
 					}
 
-					Adw.SwitchRow notifSound {
+					Adap.SwitchRow notifSound {
 						title: _("Notification Sound");
 						active: bind $_setSwitchStartStateFromKey("sound", notifSound) as <bool>;
 						notify::active => $_setSwitchSettingsKey();
@@ -59,7 +59,7 @@ template $PrefsDialog: Adw.Dialog {
 						}
 					}
 
-					Adw.ExpanderRow {
+					Adap.ExpanderRow {
 						title: _("Notification Buttons");
 						subtitle: _("Show or hide confirm/skip");
 						expanded: false;
@@ -69,7 +69,7 @@ template $PrefsDialog: Adw.Dialog {
 							icon-name: "dosage-notification-bell-symbolic";
 						}
 
-						Adw.SwitchRow confirmBtn {
+						Adap.SwitchRow confirmBtn {
 							title: _("Confirm");
 							active: bind $_setSwitchStartStateFromKey("confirm-button", confirmBtn) as <bool>;
 							notify::active => $_setSwitchSettingsKey();
@@ -80,7 +80,7 @@ template $PrefsDialog: Adw.Dialog {
 							}
 						}
 
-						Adw.SwitchRow skipBtn {
+						Adap.SwitchRow skipBtn {
 							title: _("Skip");
 							active: bind $_setSwitchStartStateFromKey("skip-button", skipBtn) as <bool>;
 							notify::active => $_setSwitchSettingsKey();
@@ -93,8 +93,8 @@ template $PrefsDialog: Adw.Dialog {
 					}
 				}
 
-				Adw.PreferencesGroup {
-					Adw.ComboRow exportHistFmt {
+				Adap.PreferencesGroup {
+					Adap.ComboRow exportHistFmt {
 						title: _("Export History As");
 						icon-name: "history-symbolic";
 
@@ -108,7 +108,7 @@ template $PrefsDialog: Adw.Dialog {
 						};
 					}
 
-					Adw.ButtonRow saveHistoryBtn {
+					$DosageButtonRow saveHistoryBtn {
 						title: _("Save");
 						sensitive: false;
 						start-icon-name: "document-save-symbolic";
@@ -116,8 +116,8 @@ template $PrefsDialog: Adw.Dialog {
 					}
 				}
 
-				Adw.PreferencesGroup {
-					Adw.ComboRow exportTreatmentsFormat {
+				Adap.PreferencesGroup {
+					Adap.ComboRow exportTreatmentsFormat {
 						title: _("Export Treatments As");
 						icon-name: "treatments-symbolic";
 
@@ -128,7 +128,7 @@ template $PrefsDialog: Adw.Dialog {
 						};
 					}
 
-					Adw.ButtonRow saveTreatmentsBtn {
+					$DosageButtonRow saveTreatmentsBtn {
 						title: _("Save");
 						sensitive: false;
 						start-icon-name: "document-save-symbolic";

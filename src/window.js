@@ -4,7 +4,7 @@
  */
 'use strict';
 
-import Adw from 'gi://Adw?version=1';
+import Adw from 'gi://Adap?version=1';
 import Gdk from 'gi://Gdk?version=4.0';
 import Gio from 'gi://Gio?version=2.0';
 import GLib from 'gi://GLib?version=2.0';
@@ -63,14 +63,29 @@ export const DosageWindow = GObject.registerClass(
 			'buttonSearch',
 			'searchBar',
 			'searchEntry',
+			'headerBar',
+			'switcherBar',
 		],
 	},
 	class DosageWindow extends Adw.ApplicationWindow {
 		constructor(application) {
 			super({ application });
+			this.#setBreakpoint();
 			this.#loadSettings();
 			this.#start();
 			this.#clockTick();
+		}
+
+		#setBreakpoint() {
+			const breakpoint = new Adw.Breakpoint({
+				condition: Adw.BreakpointCondition.parse('max-width: 512sp'),
+			});
+			// a plain null isn't converted to an empty GtkWidget value
+			const noWidget = new GObject.Value();
+			noWidget.init(Gtk.Widget);
+			breakpoint.add_setter(this._switcherBar, 'reveal', true);
+			breakpoint.add_setter(this._headerBar, 'title-widget', noWidget);
+			this.add_breakpoint(breakpoint);
 		}
 
 		#loadSettings() {

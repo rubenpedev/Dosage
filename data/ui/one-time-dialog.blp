@@ -1,16 +1,16 @@
 using Gtk 4.0;
-using Adw 1;
+using Adap 1;
 
-template $OneTimeDialog: Adw.Dialog {
+template $OneTimeDialog: Adap.Dialog {
 	name: "one-time-dialog";
 	content-width: 424;
 	title: _("One-Time Entry");
 	presentation-mode: bottom_sheet;
 
-	Adw.ToastOverlay toastOverlay {
-		Adw.ToolbarView {
+	Adap.ToastOverlay toastOverlay {
+		Adap.ToolbarView {
 			[top]
-			Adw.HeaderBar headerBar {}
+			Adap.HeaderBar headerBar {}
 
 			content: Overlay {
 				ScrolledWindow {
@@ -18,7 +18,7 @@ template $OneTimeDialog: Adw.Dialog {
 						"scrollbar-visible",
 					]
 
-					Adw.Clamp oneTimeDialogClamp {
+					Adap.Clamp oneTimeDialogClamp {
 						maximum-size: 410;
 
 						Box {
@@ -34,7 +34,7 @@ template $OneTimeDialog: Adw.Dialog {
 
 								selection-mode: none;
 
-								Adw.ButtonRow oneTimeBtnRow {
+								$DosageButtonRow oneTimeBtnRow {
 									sensitive: false;
 
 									styles [
@@ -45,7 +45,7 @@ template $OneTimeDialog: Adw.Dialog {
 									end-icon-name: "pan-down-symbolic";
 								}
 
-								Adw.EntryRow medName {
+								Adap.EntryRow medName {
 									title: _("Name");
 
 									[suffix]
@@ -173,12 +173,12 @@ template $OneTimeDialog: Adw.Dialog {
 									}
 								}
 
-								Adw.EntryRow medUnit {
+								Adap.EntryRow medUnit {
 									title: _("Unit");
 									text: _("Pill(s)");
 								}
 
-								Adw.SpinRow medAmount {
+								Adap.SpinRow medAmount {
 									title: _("Amount");
 									subtitle: _("Dose");
 									digits: 2;
@@ -191,7 +191,7 @@ template $OneTimeDialog: Adw.Dialog {
 									};
 								}
 
-								Adw.ActionRow medTime {
+								Adap.ActionRow medTime {
 									styles [
 										"property",
 									]
@@ -223,7 +223,7 @@ template $OneTimeDialog: Adw.Dialog {
 									}
 								}
 
-								Adw.ActionRow dateOneEntry {
+								Adap.ActionRow dateOneEntry {
 									styles [
 										"property",
 										"numeric",
@@ -235,7 +235,7 @@ template $OneTimeDialog: Adw.Dialog {
 
 									[suffix]
 									MenuButton calOneEntryBtn {
-										Adw.ButtonContent {
+										Adap.ButtonContent {
 											icon-name: "month-symbolic";
 										}
 

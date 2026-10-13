@@ -1,15 +1,15 @@
 using Gtk 4.0;
-using Adw 1;
+using Adap 1;
 
-template $MedDialog: Adw.Dialog {
+template $MedDialog: Adap.Dialog {
 	name: 'medication-dialog';
 	content-width: 442;
 	title: _("New Treatment");
 
-	Adw.ToastOverlay toastOverlay {
-		Adw.ToolbarView {
+	Adap.ToastOverlay toastOverlay {
+		Adap.ToolbarView {
 			[top]
-			Adw.HeaderBar headerBar {
+			Adap.HeaderBar headerBar {
 				show-start-title-buttons: false;
 				show-end-title-buttons: false;
 				decoration-layout: '';
@@ -40,7 +40,7 @@ template $MedDialog: Adw.Dialog {
 					'scrollbar-visible',
 				]
 
-				Adw.Clamp medDialogClamp {
+				Adap.Clamp medDialogClamp {
 					maximum-size: 440;
 
 					Box {
@@ -57,7 +57,7 @@ template $MedDialog: Adw.Dialog {
 
 							selection-mode: none;
 
-							Adw.EntryRow medName {
+							Adap.EntryRow medName {
 								title: _("Name");
 
 								MenuButton dosageColorButton {
@@ -184,7 +184,7 @@ template $MedDialog: Adw.Dialog {
 								}
 							}
 
-							Adw.EntryRow medUnit {
+							Adap.EntryRow medUnit {
 								title: _("Unit");
 								text: _("Pill(s)");
 
@@ -439,11 +439,11 @@ template $MedDialog: Adw.Dialog {
 								}
 							}
 
-							Adw.EntryRow medNotes {
+							Adap.EntryRow medNotes {
 								title: _("Notes");
 							}
 
-							Adw.ComboRow frequencyMenu {
+							Adap.ComboRow frequencyMenu {
 								styles [
 									'property',
 									'numeric',
@@ -472,7 +472,7 @@ template $MedDialog: Adw.Dialog {
 									valign: center;
 									tooltip-text: _("Choose Days");
 
-									Adw.ButtonContent {
+									Adap.ButtonContent {
 										icon-name: 'view-more-horizontal-symbolic';
 									}
 
@@ -571,7 +571,7 @@ template $MedDialog: Adw.Dialog {
 									valign: center;
 									tooltip-text: _("Choose Day");
 
-									Adw.ButtonContent {
+									Adap.ButtonContent {
 										icon-name: 'view-more-horizontal-symbolic';
 									}
 
@@ -587,7 +587,7 @@ template $MedDialog: Adw.Dialog {
 											ListBox {
 												css-name: "spinbox";
 
-												Adw.SpinRow dayOfMonth {
+												Adap.SpinRow dayOfMonth {
 													activatable: false;
 													selectable: false;
 													climb-rate: 0.2;
@@ -614,7 +614,7 @@ template $MedDialog: Adw.Dialog {
 									valign: center;
 									tooltip-text: _("Change Cycle");
 
-									Adw.ButtonContent {
+									Adap.ButtonContent {
 										icon-name: 'view-more-horizontal-symbolic';
 									}
 
@@ -630,7 +630,7 @@ template $MedDialog: Adw.Dialog {
 											ListBox {
 												css-name: "spinbox";
 
-												Adw.SpinRow cycleActive {
+												Adap.SpinRow cycleActive {
 													activatable: false;
 													selectable: false;
 													title: _("Days Active");
@@ -644,7 +644,7 @@ template $MedDialog: Adw.Dialog {
 													};
 												}
 
-												Adw.SpinRow cycleInactive {
+												Adap.SpinRow cycleInactive {
 													activatable: false;
 													selectable: false;
 													title: _("Days Inactive");
@@ -658,7 +658,7 @@ template $MedDialog: Adw.Dialog {
 													};
 												}
 
-												Adw.SpinRow cycleCurrent {
+												Adap.SpinRow cycleCurrent {
 													activatable: false;
 													selectable: false;
 													// TRANSLATORS: Day in cycle, try to keep it short
@@ -684,18 +684,18 @@ template $MedDialog: Adw.Dialog {
 								name: "med-dialog-dosage-list";
 							}
 
-							Adw.SwitchRow increasePriority {
+							Adap.SwitchRow increasePriority {
 								title: _("Increase Notification Priority");
 								subtitle: _("Show in fullscreen mode or with 'Do Not Disturb' enabled");
 							}
 
-							Adw.ExpanderRow recurringNotif {
+							Adap.ExpanderRow recurringNotif {
 								title: _("Recurring Notifications");
 								subtitle: _("Renotify until it's confirmed or skipped");
 								show-enable-switch: true;
 								enable-expansion: false;
 
-								Adw.SpinRow {
+								Adap.SpinRow {
 									title: _("Interval in Minutes");
 									climb-rate: 0.2;
 
@@ -708,14 +708,14 @@ template $MedDialog: Adw.Dialog {
 								}
 							}
 
-							Adw.ExpanderRow medInventory {
+							Adap.ExpanderRow medInventory {
 								title: _("Inventory");
 								subtitle: _("Manage your stock");
 								show-enable-switch: true;
 								enable-expansion: false;
 								expanded: true;
 
-								Adw.SpinRow {
+								Adap.SpinRow {
 									title: _("Current");
 									climb-rate: 0.2;
 									digits: 2;
@@ -728,7 +728,7 @@ template $MedDialog: Adw.Dialog {
 									};
 								}
 
-								Adw.SpinRow {
+								Adap.SpinRow {
 									title: _("Remind Me At");
 									climb-rate: 0.2;
 									digits: 2;
@@ -741,7 +741,7 @@ template $MedDialog: Adw.Dialog {
 									};
 								}
 
-								Adw.SpinRow {
+								Adap.SpinRow {
 									title: _("Refill Amount");
 									climb-rate: 0.2;
 
@@ -754,13 +754,13 @@ template $MedDialog: Adw.Dialog {
 								}
 							}
 
-							Adw.ExpanderRow medDuration {
+							Adap.ExpanderRow medDuration {
 								title: _("Duration");
 								subtitle: _("Set start and end dates");
 								show-enable-switch: true;
 								enable-expansion: false;
 
-								Adw.ActionRow calendarStartRow {
+								Adap.ActionRow calendarStartRow {
 									styles [
 										'property',
 										'numeric',
@@ -771,7 +771,7 @@ template $MedDialog: Adw.Dialog {
 
 									[suffix]
 									MenuButton calendarStartBtn {
-										Adw.ButtonContent {
+										Adap.ButtonContent {
 											icon-name: 'month-symbolic';
 										}
 
@@ -802,7 +802,7 @@ template $MedDialog: Adw.Dialog {
 									}
 								}
 
-								Adw.ActionRow calendarEndRow {
+								Adap.ActionRow calendarEndRow {
 									styles [
 										'property',
 										'numeric',
@@ -813,7 +813,7 @@ template $MedDialog: Adw.Dialog {
 
 									[suffix]
 									MenuButton calendarEndBtn {
-										Adw.ButtonContent {
+										Adap.ButtonContent {
 											icon-name: 'month-symbolic';
 										}
 
@@ -845,14 +845,14 @@ template $MedDialog: Adw.Dialog {
 								}
 							}
 
-							Adw.SwitchRow markAsConfirmed {
+							Adap.SwitchRow markAsConfirmed {
 								title: _("Mark as Confirmed");
 								subtitle: _(
 									"If not manually confirmed or skipped, it will be recorded as confirmed in history, reducing stock if enabled"
 								);
 							}
 
-							Adw.ButtonRow deleteButton {
+							$DosageButtonRow deleteButton {
 								styles [
 									'destructive-action',
 								]

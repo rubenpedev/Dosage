@@ -1,6 +1,6 @@
 'use strict';
 
-import Adw from 'gi://Adw?version=1';
+import Adw from 'gi://Adap?version=1';
 import Gtk from 'gi://Gtk?version=4.0';
 import { dosageList } from './medDialog.js';
 import TimePicker from './timePicker.js';

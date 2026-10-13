@@ -4,7 +4,7 @@
  */
 'use strict';
 
-import Adw from 'gi://Adw?version=1';
+import Adw from 'gi://Adap?version=1';
 import GLib from 'gi://GLib?version=2.0';
 import Gdk from 'gi://Gdk?version=4.0';
 import Gtk from 'gi://Gtk?version=4.0';

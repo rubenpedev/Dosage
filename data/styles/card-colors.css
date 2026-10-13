@@ -1,98 +1,183 @@
-@media (prefers-color-scheme: light) {
-  .red,
-  .red-clr {
-    --med-color: var(--accent-red);
-  }
-  .orange,
-  .orange-clr {
-    --med-color: var(--accent-orange);
-  }
-  .yellow,
-  .yellow-clr {
-    --med-color: var(--accent-yellow);
-  }
-  .green,
-  .green-clr {
-    --med-color: var(--accent-green);
-  }
-  .cyan,
-  .cyan-clr {
-    --med-color: var(--accent-teal);
-  }
-  .blue,
-  .blue-clr {
-    --med-color: var(--accent-blue);
-  }
-  .purple,
-  .purple-clr {
-    --med-color: var(--accent-purple);
-  }
-  .default,
-  .default-clr {
-    --med-color: #4a4a52;
-  }
+/*
+libadapta targets GTK 4.14, which has no CSS variables, relative colors
+or media queries, so every color gets its own set of rules and the
+dark/high contrast values live in style-dark.css and style-hc.css
+*/
+
+@define-color med_red #e62d42;
+@define-color med_orange #ed5b00;
+@define-color med_yellow #c88800;
+@define-color med_green #3a944a;
+@define-color med_cyan #2190a4;
+@define-color med_blue #3584e4;
+@define-color med_purple #9141ac;
+@define-color med_default #4a4a52;
+
+.red-clr,
+item-box.red .med-icon {
+  color: @med_red;
 }
-@media (prefers-color-scheme: dark) {
-  .red,
-  .red-clr,
-  .orange,
-  .orange-clr,
-  .yellow,
-  .yellow-clr,
-  .green,
-  .green-clr,
-  .cyan,
-  .cyan-clr,
-  .blue,
-  .blue-clr,
-  .purple,
-  .purple-clr,
-  .default,
-  .default-clr {
-    --standalone-color-oklab: max(l, 0.78) a b;
-  }
-  .red,
-  .red-clr {
-    --med-color: oklab(from var(--accent-red) var(--standalone-color-oklab));
-  }
-  .orange,
-  .orange-clr {
-    --med-color: oklab(from var(--accent-orange) var(--standalone-color-oklab));
-  }
-  .yellow,
-  .yellow-clr {
-    --med-color: oklab(from var(--accent-yellow) var(--standalone-color-oklab));
-  }
-  .green,
-  .green-clr {
-    --med-color: oklab(from var(--accent-green) var(--standalone-color-oklab));
-  }
-  .cyan,
-  .cyan-clr {
-    --med-color: oklab(from var(--accent-teal) var(--standalone-color-oklab));
-  }
-  .blue,
-  .blue-clr {
-    --med-color: oklab(from var(--accent-blue) var(--standalone-color-oklab));
-  }
-  .purple,
-  .purple-clr {
-    --med-color: oklab(from var(--accent-purple) var(--standalone-color-oklab));
-  }
-  .default,
-  .default-clr {
-    --med-color: #dfe0eb;
-  }
+item-box.red:dir(ltr) {
+  box-shadow:
+    inset 0 0 0 1px @list_border_color,
+    0px 2px 4px 0px @list_shadow_color,
+    inset 53px 0 0 -50px @med_red;
+}
+item-box.red:dir(rtl) {
+  box-shadow:
+    inset 0 0 0 1px @list_border_color,
+    0px 2px 4px 0px @list_shadow_color,
+    inset -53px 0 0 -50px @med_red;
+}
+item-box.red checkbutton check:checked {
+  background-color: @med_red;
+}
+
+.orange-clr,
+item-box.orange .med-icon {
+  color: @med_orange;
+}
+item-box.orange:dir(ltr) {
+  box-shadow:
+    inset 0 0 0 1px @list_border_color,
+    0px 2px 4px 0px @list_shadow_color,
+    inset 53px 0 0 -50px @med_orange;
+}
+item-box.orange:dir(rtl) {
+  box-shadow:
+    inset 0 0 0 1px @list_border_color,
+    0px 2px 4px 0px @list_shadow_color,
+    inset -53px 0 0 -50px @med_orange;
+}
+item-box.orange checkbutton check:checked {
+  background-color: @med_orange;
+}
+
+.yellow-clr,
+item-box.yellow .med-icon {
+  color: @med_yellow;
+}
+item-box.yellow:dir(ltr) {
+  box-shadow:
+    inset 0 0 0 1px @list_border_color,
+    0px 2px 4px 0px @list_shadow_color,
+    inset 53px 0 0 -50px @med_yellow;
+}
+item-box.yellow:dir(rtl) {
+  box-shadow:
+    inset 0 0 0 1px @list_border_color,
+    0px 2px 4px 0px @list_shadow_color,
+    inset -53px 0 0 -50px @med_yellow;
+}
+item-box.yellow checkbutton check:checked {
+  background-color: @med_yellow;
+}
+
+.green-clr,
+item-box.green .med-icon {
+  color: @med_green;
+}
+item-box.green:dir(ltr) {
+  box-shadow:
+    inset 0 0 0 1px @list_border_color,
+    0px 2px 4px 0px @list_shadow_color,
+    inset 53px 0 0 -50px @med_green;
+}
+item-box.green:dir(rtl) {
+  box-shadow:
+    inset 0 0 0 1px @list_border_color,
+    0px 2px 4px 0px @list_shadow_color,
+    inset -53px 0 0 -50px @med_green;
+}
+item-box.green checkbutton check:checked {
+  background-color: @med_green;
+}
+
+.cyan-clr,
+item-box.cyan .med-icon {
+  color: @med_cyan;
+}
+item-box.cyan:dir(ltr) {
+  box-shadow:
+    inset 0 0 0 1px @list_border_color,
+    0px 2px 4px 0px @list_shadow_color,
+    inset 53px 0 0 -50px @med_cyan;
+}
+item-box.cyan:dir(rtl) {
+  box-shadow:
+    inset 0 0 0 1px @list_border_color,
+    0px 2px 4px 0px @list_shadow_color,
+    inset -53px 0 0 -50px @med_cyan;
+}
+item-box.cyan checkbutton check:checked {
+  background-color: @med_cyan;
+}
+
+.blue-clr,
+item-box.blue .med-icon {
+  color: @med_blue;
+}
+item-box.blue:dir(ltr) {
+  box-shadow:
+    inset 0 0 0 1px @list_border_color,
+    0px 2px 4px 0px @list_shadow_color,
+    inset 53px 0 0 -50px @med_blue;
+}
+item-box.blue:dir(rtl) {
+  box-shadow:
+    inset 0 0 0 1px @list_border_color,
+    0px 2px 4px 0px @list_shadow_color,
+    inset -53px 0 0 -50px @med_blue;
+}
+item-box.blue checkbutton check:checked {
+  background-color: @med_blue;
+}
+
+.purple-clr,
+item-box.purple .med-icon {
+  color: @med_purple;
+}
+item-box.purple:dir(ltr) {
+  box-shadow:
+    inset 0 0 0 1px @list_border_color,
+    0px 2px 4px 0px @list_shadow_color,
+    inset 53px 0 0 -50px @med_purple;
+}
+item-box.purple:dir(rtl) {
+  box-shadow:
+    inset 0 0 0 1px @list_border_color,
+    0px 2px 4px 0px @list_shadow_color,
+    inset -53px 0 0 -50px @med_purple;
+}
+item-box.purple checkbutton check:checked {
+  background-color: @med_purple;
+}
+
+item-box.default .med-icon {
+  color: @med_default;
+}
+item-box.default:dir(ltr) {
+  box-shadow:
+    inset 0 0 0 1px @list_border_color,
+    0px 2px 4px 0px @list_shadow_color,
+    inset 53px 0 0 -50px @med_default;
+}
+item-box.default:dir(rtl) {
+  box-shadow:
+    inset 0 0 0 1px @list_border_color,
+    0px 2px 4px 0px @list_shadow_color,
+    inset -53px 0 0 -50px @med_default;
+}
+item-box.default checkbutton check:checked {
+  background-color: @med_default;
 }
 
 item-box checkbutton check:checked {
-  color: var(--window-bg-color);
-  background-color: var(--med-color);
+  color: @window_bg_color;
 }
 
 .med-icon {
-  background-color: rgb(from var(--med-color) r g b / calc(alpha * 0.135));
-  color: var(--med-color);
+  background-color: alpha(currentColor, 0.135);
   padding: 8px;
   border-radius: 99px;
 }
@@ -106,9 +191,7 @@ item-box checkbutton check:checked {
 .blue-clr,
 .purple-clr {
   border-radius: 99px;
-  color: var(--med-color);
-  box-shadow: inset 0 0 16px 16px
-    rgb(from currentColor r g b / calc(alpha * 0.02));
+  box-shadow: inset 0 0 16px 16px alpha(currentColor, 0.02);
 }
 .red-clr:hover,
 .orange-clr:hover,
@@ -117,30 +200,5 @@ item-box checkbutton check:checked {
 .cyan-clr:hover,
 .blue-clr:hover,
 .purple-clr:hover {
-  box-shadow: inset 0 0 16px 16px
-    rgb(from currentColor r g b / calc(alpha * 0.0325));
-}
-@media (prefers-contrast: more) {
-  .red-clr,
-  .orange-clr,
-  .yellow-clr,
-  .green-clr,
-  .cyan-clr,
-  .blue-clr,
-  .purple-clr {
-    box-shadow: inset 0 0 16px 16px
-        rgb(from currentColor r g b / calc(alpha * 0.02)),
-      inset 0 0 0 1px currentColor;
-  }
-  .red-clr:hover,
-  .orange-clr:hover,
-  .yellow-clr:hover,
-  .green-clr:hover,
-  .cyan-clr:hover,
-  .blue-clr:hover,
-  .purple-clr:hover {
-    box-shadow: inset 0 0 16px 16px
-        rgb(from currentColor r g b / calc(alpha * 0.0325)),
-      inset 0 0 0 1px currentColor;
-  }
+  box-shadow: inset 0 0 16px 16px alpha(currentColor, 0.0325);
 }

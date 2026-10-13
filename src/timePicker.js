@@ -1,6 +1,5 @@
 'use strict';
 
-import Adw from 'gi://Adw?version=1';
 import GLib from 'gi://GLib?version=2.0';
 import GObject from 'gi://GObject?version=2.0';
 import Gtk from 'gi://Gtk?version=4.0';
@@ -78,7 +77,8 @@ const TimePicker = GObject.registerClass(
 				adjustment: this.adjM,
 			});
 
-			this.buttonsAmPm = new Adw.ToggleGroup({
+			this.buttonsAmPm = new Gtk.Box({
+				css_classes: ['linked'],
 				margin_start: 8,
 				halign: Gtk.Align.CENTER,
 				valign: Gtk.Align.CENTER,
@@ -86,23 +86,23 @@ const TimePicker = GObject.registerClass(
 				orientation: Gtk.Orientation.VERTICAL,
 			});
 
-			this.btnAM = new Adw.Toggle({
+			this.btnAM = new Gtk.ToggleButton({
 				label: amPmStr[0],
-				name: 'am',
+				active: !hours12.isPM,
 			});
 
-			this.btnPM = new Adw.Toggle({
+			this.btnPM = new Gtk.ToggleButton({
 				label: amPmStr[1],
-				name: 'pm',
+				group: this.btnAM,
+				active: hours12.isPM,
 			});
 
 			hoursMinutesBox.append(spinBtnHours);
 			hoursMinutesBox.append(spinBtnSeparator);
 			hoursMinutesBox.append(spinBtnMinutes);
 			this.append(hoursMinutesBox);
-			this.buttonsAmPm.add(this.btnAM);
-			this.buttonsAmPm.add(this.btnPM);
-			this.buttonsAmPm.active_name = hours12.isPM ? 'pm' : 'am';
+			this.buttonsAmPm.append(this.btnAM);
+			this.buttonsAmPm.append(this.btnPM);
 			this.append(this.buttonsAmPm);
 
 			spinBtnHours.connect('output', h => {
@@ -117,13 +117,12 @@ const TimePicker = GObject.registerClass(
 				return true;
 			});
 
-			this.buttonsAmPm.connect('notify::active', () => this.setTime());
+			this.btnPM.connect('toggled', () => this.setTime());
 		}
 
 		setTime() {
 			if (clockIs12) {
-				const pmActive = this.buttonsAmPm.active_name === 'pm';
-				const hours24 = this.convert12To24(this.adjH.value, pmActive);
+				const hours24 = this.convert12To24(this.adjH.value, this.btnPM.active);
 				this.time = GLib.DateTime.new_local(1, 1, 1, hours24, this.adjM.value, 1);
 			} else {
 				this.time = GLib.DateTime.new_local(1, 1, 1, this.adjH.value, this.adjM.value, 1);

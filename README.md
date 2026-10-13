@@ -52,4 +52,16 @@ This project follows the [GNOME Code of Conduct](https://conduct.gnome.org)
 
 ### Build from source
 
-Clone the repo in GNOME Builder and press run
+This version uses [libadapta](https://github.com/xapp-project/libadapta) instead of libadwaita.
+
+On Linux Mint, install the dependencies and build with Meson:
+
+```sh
+sudo apt install meson gettext blueprint-compiler libglib2.0-dev-bin \
+  gjs gir1.2-gtk-4.0 gir1.2-adap-1 gir1.2-xdp-1.0 libgtk-4-media-gstreamer
+
+meson setup build
+sudo meson install -C build
+```
+
+Or clone the repo in GNOME Builder and press run

@@ -21,6 +21,7 @@
 	<programming-language>JavaScript</programming-language>
 	<platform>GTK 4</platform>
 	<platform>Libadwaita</platform>
+	<platform>Libadapta</platform>
 
 	<maintainer>
 		<foaf:Person>
@@ -36,5 +37,3 @@
 	</maintainer>
 
 </Project>
-
-

@@ -4,7 +4,7 @@
  */
 'use strict';
 
-import Adw from 'gi://Adw?version=1';
+import Adw from 'gi://Adap?version=1';
 import Gio from 'gi://Gio?version=2.0';
 import GLib from 'gi://GLib?version=2.0';
 import GObject from 'gi://GObject?version=2.0';
@@ -70,6 +70,7 @@ export const DosageApplication = GObject.registerClass(
 					'GNOME https://www.gnome.org/',
 					'GTK https://www.gtk.org/',
 					'Libadwaita https://gnome.pages.gitlab.gnome.org/libadwaita/',
+					'Libadapta https://github.com/xapp-project/libadapta',
 					'Workbench https://apps.gnome.org/Workbench/',
 					'Blueprint https://jwestman.pages.gitlab.gnome.org/blueprint-compiler/index.html',
 					'GTK4 + GJS Book https://rmnvgr.gitlab.io/gtk4-gjs-book/',
@@ -81,8 +82,9 @@ export const DosageApplication = GObject.registerClass(
 					'https://www.paypal.com/donate?hosted_button_id=DVL7H35GA66X6',
 				);
 				aboutDialog.add_link('Doar (Pix): diego.pvlk@gmail.com', 'diego.pvlk@gmail.com');
-				aboutDialog.add_other_app('io.github.diegopvlk.Cine', 'Cine', 'Play your videos');
-				aboutDialog.add_other_app(
+				// not available in libadapta
+				aboutDialog.add_other_app?.('io.github.diegopvlk.Cine', 'Cine', 'Play your videos');
+				aboutDialog.add_other_app?.(
 					'io.github.diegopvlk.Tomatillo',
 					'Tomatillo',
 					'Focus better, work smarter',

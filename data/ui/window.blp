@@ -1,22 +1,15 @@
 using Gtk 4.0;
-using Adw 1;
+using Adap 1;
 
-template $DosageWindow: Adw.ApplicationWindow {
+template $DosageWindow: Adap.ApplicationWindow {
 	name: 'io-github-diegopvlk-Dosage';
 	title: _("Dosage");
+	width-request: 360;
+	height-request: 200;
 
-	Adw.Breakpoint {
-		condition ('max-width: 512sp')
-
-		setters {
-			switcherBar.reveal: true;
-			headerBar.title-widget: null;
-		}
-	}
-
-	content: Adw.ToolbarView {
+	content: Adap.ToolbarView {
 		[top]
-		Adw.HeaderBar headerBar {
+		Adap.HeaderBar headerBar {
 			[start]
 			ToggleButton btnWhenNeeded {
 				icon-name: "show-when-needed-symbolic";
@@ -48,7 +41,7 @@ template $DosageWindow: Adw.ApplicationWindow {
 				tooltip-text: _("Main Menu");
 			}
 
-			title-widget: Adw.ViewSwitcher {
+			title-widget: Adap.ViewSwitcher {
 				stack: viewStack;
 				policy: wide;
 			};
@@ -63,10 +56,10 @@ template $DosageWindow: Adw.ApplicationWindow {
 			}
 		}
 
-		content: Adw.ViewStack viewStack {
+		content: Adap.ViewStack viewStack {
 			vexpand: true;
 
-			Adw.ViewStackPage todayPage {
+			Adap.ViewStackPage todayPage {
 				name: 'today-page';
 				title: _("Today");
 				icon-name: 'today-icn-symbolic';
@@ -77,7 +70,7 @@ template $DosageWindow: Adw.ApplicationWindow {
 							'scrollbar-visible',
 						]
 
-						Adw.ClampScrollable {
+						Adap.ClampScrollable {
 							ListView todayList {
 								styles [
 									'dosage-list',
@@ -93,12 +86,18 @@ template $DosageWindow: Adw.ApplicationWindow {
 					}
 
 					[overlay]
-					Adw.StatusPage emptyToday {
+					Adap.StatusPage emptyToday {
 						visible: true;
 					}
 
 					[overlay]
-					Adw.Spinner spinnerToday {}
+					Spinner spinnerToday {
+						spinning: true;
+						halign: center;
+						valign: center;
+						width-request: 48;
+						height-request: 48;
+					}
 
 					[overlay]
 					Box {
@@ -128,7 +127,7 @@ template $DosageWindow: Adw.ApplicationWindow {
 							clicked => $addTodayOrOneTimeToHist();
 							name: '1';
 
-							child: Adw.ButtonContent entryBtnContent {
+							child: Adap.ButtonContent entryBtnContent {
 								icon-name: 'list-add-symbolic';
 								label: _("One-Time Entry");
 							};
@@ -151,7 +150,7 @@ template $DosageWindow: Adw.ApplicationWindow {
 				};
 			}
 
-			Adw.ViewStackPage historyPage {
+			Adap.ViewStackPage historyPage {
 				name: 'history-page';
 				title: _("History");
 				icon-name: 'history-symbolic';
@@ -162,7 +161,7 @@ template $DosageWindow: Adw.ApplicationWindow {
 							'scrollbar-visible',
 						]
 
-						Adw.ClampScrollable {
+						Adap.ClampScrollable {
 							ListView historyList {
 								styles [
 									'dosage-list',
@@ -177,7 +176,7 @@ template $DosageWindow: Adw.ApplicationWindow {
 					}
 
 					[overlay]
-					Adw.StatusPage emptyHistory {
+					Adap.StatusPage emptyHistory {
 						icon-name: 'history-empty-symbolic';
 						visible: false;
 					}
@@ -229,7 +228,7 @@ template $DosageWindow: Adw.ApplicationWindow {
 				};
 			}
 
-			Adw.ViewStackPage treatmentsPage {
+			Adap.ViewStackPage treatmentsPage {
 				name: 'treatments-page';
 				title: _("Treatments");
 				icon-name: 'treatments-symbolic';
@@ -240,7 +239,7 @@ template $DosageWindow: Adw.ApplicationWindow {
 							'scrollbar-visible',
 						]
 
-						Adw.ClampScrollable {
+						Adap.ClampScrollable {
 							vexpand: true;
 
 							ListView treatmentsList {
@@ -255,7 +254,7 @@ template $DosageWindow: Adw.ApplicationWindow {
 					}
 
 					[overlay]
-					Adw.StatusPage emptyTreatments {
+					Adap.StatusPage emptyTreatments {
 						icon-name: 'treatments-symbolic';
 						title: _("No Treatments");
 						visible: false;
@@ -278,7 +277,7 @@ template $DosageWindow: Adw.ApplicationWindow {
 								'floating',
 							]
 
-							child: Adw.ButtonContent {
+							child: Adap.ButtonContent {
 								icon-name: 'list-add-symbolic';
 								label: _("Add");
 							};
@@ -289,7 +288,7 @@ template $DosageWindow: Adw.ApplicationWindow {
 		};
 
 		[bottom]
-		Adw.ViewSwitcherBar switcherBar {
+		Adap.ViewSwitcherBar switcherBar {
 			stack: viewStack;
 		}
 	};
@@ -341,7 +340,7 @@ menu appMenu {
 
 	item {
 		label: _("Keyboard Shortcuts");
-		action: "app.shortcuts";
+		action: "win.show-help-overlay";
 	}
 
 	item {

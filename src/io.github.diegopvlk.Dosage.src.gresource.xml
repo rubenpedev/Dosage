@@ -7,6 +7,7 @@
     <file>utils/locale.js</file>
     <file>utils/saveFiles.js</file>
     <file>utils/upgradeItems.js</file>
+    <file>buttonRow.js</file>
     <file>editHistDialog.js</file>
     <file>historyFactory.js</file>
     <file>main.js</file>

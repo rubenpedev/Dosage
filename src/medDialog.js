@@ -4,11 +4,12 @@
  */
 'use strict';
 
-import Adw from 'gi://Adw?version=1';
+import Adw from 'gi://Adap?version=1';
 import GLib from 'gi://GLib?version=2.0';
 import GObject from 'gi://GObject?version=2.0';
 import Gtk from 'gi://Gtk?version=4.0';
 
+import './buttonRow.js';
 import { getDosageWindow } from './main.js';
 import { MedicationObject } from './medication.js';
 import { TimeDoseRow } from './timeDoseRow.js';
@@ -77,7 +78,10 @@ export const MedDialog = GObject.registerClass(
 			this._existingTreatment = (listView && itemPosition >= 0) || duplicate;
 			dosageList = this._dosageList;
 			this._updatedItemPosition = 0;
-			this.set_presentation_mode(2);
+			// set only once, libadapta aborts if the mode goes back to auto before presenting
+			if (!this._existingTreatment || duplicate) {
+				this.set_presentation_mode(Adw.DialogPresentationMode.BOTTOM_SHEET);
+			}
 			this._initMedDialog();
 			this._setDialogHeight();
 		}
@@ -101,8 +105,6 @@ export const MedDialog = GObject.registerClass(
 					this._deleteButton.set_visible(true);
 				}
 
-				this.set_presentation_mode(0);
-
 				const item = this._list.get_model().get_item(this._position).obj;
 
 				this._medName.text = item.name;
@@ -110,7 +112,6 @@ export const MedDialog = GObject.registerClass(
 				this._medNotes.text = item.notes ? item.notes : '';
 
 				if (this._duplicate) {
-					this.set_presentation_mode(2);
 					this._medName.text += ` (${_('Copy')})`;
 				}
 

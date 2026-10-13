@@ -1,6 +1,6 @@
 'use strict';
 
-import Adw from 'gi://Adw?version=1';
+import Adw from 'gi://Adap?version=1';
 import GObject from 'gi://GObject?version=2.0';
 import Gtk from 'gi://Gtk?version=4.0';
 
@@ -20,7 +20,8 @@ export const EditHistDialog = GObject.registerClass(
 			'popoverScrollTime',
 			'nameDoseSpinRow',
 			'takenRow',
-			'takenButtons',
+			'skippedToggle',
+			'confirmedToggle',
 		],
 	},
 	class EditHistDialog extends Adw.Dialog {
@@ -52,24 +53,24 @@ export const EditHistDialog = GObject.registerClass(
 
 			switch (item.taken[1]) {
 				case 2:
-					this._takenButtons.active_name = 'confirmed';
+					this._confirmedToggle.active = true;
 					this._takenRow.title = _('Auto-Confirmed');
 					break;
 				case 1:
-					this._takenButtons.active_name = 'confirmed';
+					this._confirmedToggle.active = true;
 					this._takenRow.title = _('Confirmed At');
 					break;
 				case 0:
-					this._takenButtons.active_name = 'skipped';
+					this._skippedToggle.active = true;
 					this._takenRow.title = _('Skipped At');
 					break;
 				case -1:
-					this._takenButtons.active_name = 'skipped';
+					this._skippedToggle.active = true;
 					this._takenRow.title = _('Missed') + ' (?)';
 					this._saveButton.sensitive = false;
 					break;
 				case 3:
-					this._takenButtons.active_name = 'confirmed';
+					this._confirmedToggle.active = true;
 					this._takenRow.title = _('Confirmed');
 					this._takenRow.subtitle = _('Time Unknown');
 					break;
@@ -83,7 +84,7 @@ export const EditHistDialog = GObject.registerClass(
 				if (this._takenRow.subtitle != e.text) {
 					this._takenRow.subtitle = e.text;
 
-					const confirmActive = this._takenButtons.active_name === 'confirmed';
+					const confirmActive = this._confirmedToggle.active;
 
 					if (confirmActive) {
 						this._takenRow.title = _('Confirmed At');
@@ -105,13 +106,11 @@ export const EditHistDialog = GObject.registerClass(
 			this._saveButton.sensitive = true;
 			this._takenRow.subtitle = this._timePicker.entry.text;
 
-			switch (this._takenButtons.active_name) {
-				case 'confirmed':
-					this._takenRow.title = _('Confirmed At');
-					this._confirmActivated = true;
-					break;
-				case 'skipped':
-					this._takenRow.title = _('Skipped At');
+			if (this._confirmedToggle.active) {
+				this._takenRow.title = _('Confirmed At');
+				this._confirmActivated = true;
+			} else {
+				this._takenRow.title = _('Skipped At');
 			}
 		}
 
@@ -137,8 +136,8 @@ export const EditHistDialog = GObject.registerClass(
 					confirmedDose = +item.dose;
 			}
 
-			const skipActive = this._takenButtons.active_name === 'skipped';
-			const confirmActive = this._takenButtons.active_name === 'confirmed';
+			const skipActive = this._skippedToggle.active;
+			const confirmActive = this._confirmedToggle.active;
 
 			if (skipActive) item.taken[1] = 0;
 			else if (this._confirmActivated && confirmActive) item.taken[1] = 1;

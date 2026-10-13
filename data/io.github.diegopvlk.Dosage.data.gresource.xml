@@ -3,13 +3,15 @@
   <gresource prefix="/io/github/diegopvlk/Dosage">
     <file alias="style.css">styles/style.css</file>
     <file alias="card-colors.css">styles/card-colors.css</file>
+    <file alias="style-dark.css">styles/style-dark.css</file>
+    <file alias="style-hc.css">styles/style-hc.css</file>
     <file>sounds/ding.ogg</file>
     <file preprocess="xml-stripblanks">ui/edit-hist-dialog.ui</file>
     <file preprocess="xml-stripblanks">ui/med-dialog.ui</file>
     <file preprocess="xml-stripblanks">ui/one-time-dialog.ui</file>
     <file preprocess="xml-stripblanks">ui/preferences.ui</file>
     <file preprocess="xml-stripblanks">ui/refill-dialog.ui</file>
-    <file preprocess="xml-stripblanks" alias="shortcuts-dialog.ui">ui/shortcuts-dialog.ui</file>
+    <file preprocess="xml-stripblanks" alias="gtk/help-overlay.ui">ui/shortcuts-dialog.ui</file>
     <file preprocess="xml-stripblanks">ui/window.ui</file>
   </gresource>
   <gresource prefix="/io/github/diegopvlk/Dosage/icons/scalable/actions">
